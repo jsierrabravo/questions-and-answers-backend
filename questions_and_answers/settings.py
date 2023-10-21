@@ -37,8 +37,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 CUSTOM_APPS = [
-    # 'profiles',
-    # 'posts',
+    'apps.profiles',
+    'apps.posts',
 ]
 
 THIRD_PARTY_APPS = [
