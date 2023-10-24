@@ -5,9 +5,10 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    posts = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    posts = serializers.HyperlinkedRelatedField(many=True, view_name='posts:detail', read_only=True)
+    url = serializers.HyperlinkedIdentityField(view_name='posts:detail')
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'posts']
+        fields = ['url', 'id', 'username', 'posts']

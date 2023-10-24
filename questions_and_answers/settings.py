@@ -54,11 +54,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ] + CUSTOM_APPS + THIRD_PARTY_APPS
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#     ]
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    # ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -5,7 +5,7 @@ from apps.profiles import views
 app_name = 'profiles'
 
 urlpatterns = [
-    path('', views.UserList.as_view(), name='index'),
+    path('', views.UserList.as_view(), name='list'),
     path('<int:pk>/', views.UserDetail.as_view(), name='detail')
 ]
 
