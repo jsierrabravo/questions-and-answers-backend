@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    posts = serializers.HyperlinkedRelatedField(many=True, view_name='posts:detail', read_only=True)
-    url = serializers.HyperlinkedIdentityField(view_name='posts:detail')
+    posts = serializers.HyperlinkedRelatedField(many=True, view_name='posts-detail', read_only=True)
+    url = serializers.HyperlinkedIdentityField(view_name='profiles-detail')
 
     class Meta:
         model = User

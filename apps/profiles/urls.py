@@ -1,13 +1,13 @@
-from django.urls import path, include
-from rest_framework.urlpatterns import format_suffix_patterns
-from rest_framework.routers import DefaultRouter
 from apps.profiles import views
 
-app_name = 'profiles'
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+
+# app_name = 'profiles'
 
 router = DefaultRouter()
-router.register(r'', views.UserViewSet, basename="profiles")
+router.register(r'profiles', views.UserViewSet, basename="profiles")
 
-urlpatterns = format_suffix_patterns([
+urlpatterns = [
     path('', include(router.urls)),
-])
+]
