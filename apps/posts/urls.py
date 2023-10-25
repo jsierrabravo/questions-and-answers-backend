@@ -4,10 +4,19 @@ from apps.posts import views
 
 app_name = 'posts'
 
-urlpatterns = [
-    path('root/', views.api_root, name='root'),
-    path('', views.PostList.as_view(), name='list'),
-    path('<int:pk>/', views.PostDetail.as_view(), name='detail'),
-]
+post_list = views.PostViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+post_detail = views.PostViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns = format_suffix_patterns([
+    path('root/', views.api_root),
+    path('', post_list, name='list'),
+    path('<int:pk>/', post_detail, name='detail'),
+])

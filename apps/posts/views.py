@@ -7,10 +7,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
+from rest_framework import viewsets
 
-class PostList(generics.ListCreateAPIView):
+
+class PostViewSet(viewsets.ModelViewSet):
     """
-    List all posts, or create a new post.
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
     """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -21,18 +24,6 @@ class PostList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
-
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Retrieve, update or delete a post
-    """
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly,
-    ]
 
 
 @api_view
