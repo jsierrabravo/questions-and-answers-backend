@@ -4,7 +4,7 @@ from apps.posts.models import Post
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
-    url = serializers.HyperlinkedIdentityField(view_name='posts:detail')
+    url = serializers.HyperlinkedIdentityField(view_name='posts-detail')
     
     class Meta:
         model = Post
