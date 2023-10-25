@@ -24,11 +24,3 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
-
-@api_view
-def api_root(request, format=None):
-    return Response({
-        'users': reverse('profiles:list', request=request, format=format),
-        'posts': reverse('posts:list', request=request, format=format)
-    })

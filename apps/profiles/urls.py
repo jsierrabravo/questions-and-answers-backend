@@ -1,17 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework.routers import DefaultRouter
 from apps.profiles import views
 
 app_name = 'profiles'
 
-user_list = views.UserViewSet.as_view({
-    'get': 'list'
-})
-user_detail = views.UserViewSet.as_view({
-    'get': 'retrieve'
-})
+router = DefaultRouter()
+router.register(r'', views.UserViewSet, basename="profiles")
 
 urlpatterns = format_suffix_patterns([
-    path('', user_list, name='list'),
-    path('<int:pk>/', user_detail, name='detail'),
+    path('', include(router.urls)),
 ])
